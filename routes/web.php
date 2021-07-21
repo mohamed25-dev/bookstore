@@ -21,7 +21,7 @@ Route::get('/search', [GalleryController::class, 'search'])->name('search');
 
 Route::get('/categories/search', [CategoryController::class, 'search'])->name('gallery.categories.search');
 Route::get('/categories/{category}', [CategoryController::class, 'getByCategory'])->name('gallery.categories.show');
-Route::get('/categories', [CategoryController::class, 'index'])->name('gallery.categories.index');
+Route::get('/categories', [CategoryController::class, 'list'])->name('gallery.categories.index');
 
 Route::get('/publishers/search', [PublisherController::class, 'search'])->name('gallery.publishers.search');
 Route::get('/publishers/{publisher}', [PublisherController::class, 'getByPublisher'])->name('gallery.publishers.show');

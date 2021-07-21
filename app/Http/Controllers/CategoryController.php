@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function list()
     {
         $categories = Category::all()->sortBy('name');
         $title = "التصنيفات";
@@ -32,14 +32,28 @@ class CategoryController extends Controller
         return view('gallery', compact('books', 'title'));
     }
 
+    public function index ()
+    {
+        $categories = Category::all();
+        return view('admin.categories.index', compact('categories'));
+    }
+
     public function create()
     {
-        //
+        return view('admin.categories.create');
     }
 
     public function store(Request $request)
     {
-        //
+        $data = request()->validate([
+            'name' => 'required',
+            'description' => 'sometimes',            
+        ]);
+
+        Category::create($data);
+
+        session()->flash('flash_message', 'تمت  إضافة التصنيف بنجاح');
+        return redirect(route('categories.index'));
     }
 
     public function show(Category $cateogry)
@@ -48,18 +62,29 @@ class CategoryController extends Controller
     }
 
 
-    public function edit(Category $cateogry)
+    public function edit(Category $category)
     {
-        //
+        return view('admin.categories.edit', compact('category'));
     }
 
-    public function update(Request $request, Category $cateogry)
+    public function update(Request $request, Category $category)
     {
-        //
+        $data = request()->validate([
+            'name' => 'required',
+            'description' => 'sometimes',            
+        ]);
+
+        $category->update($data);
+
+        session()->flash('flash_message', 'تمت  تعديل التصنيف بنجاح');
+        return redirect(route('categories.index'));
     }
 
-    public function destroy(Category $cateogry)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        
+        session()->flash('flash_message', 'تمت حذف التصنيف بنجاح');
+        return redirect(route('categories.index'));
     }
 }
