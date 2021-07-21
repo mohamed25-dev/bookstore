@@ -24,20 +24,4 @@ class GalleryController extends Controller
 
         return view('gallery', compact('books', 'title'));
     }
-
-    public function getByCategory (Category $category)
-    {
-        $books = $category->books()->paginate(12);
-        $title = " عرض الكتب بتصنيف " . " : " . $category->name;
-
-        return view('gallery', compact('books', 'title'));
-    }
-
-    public function getByAuthor (Author $author)
-    {
-        $books = $author->books()->paginate(12);
-        $title = " عرض كتب المؤلف " . " : " . $author->name;
-
-        return view('gallery', compact('books', 'title'));
-    }
 }

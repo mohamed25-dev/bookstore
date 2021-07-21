@@ -2,83 +2,63 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Cateogry;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $categories = Category::all()->sortBy('name');
+        $title = "التصنيفات";
+
+        return view('categories.index', compact('categories', 'title'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function search (Request $request)
+    {
+        $categories = Category::where('name', 'LIKE', '%' . $request->term . '%')->paginate(12);
+        $title = " عرض نتائج البحث عن" . " : " . $request->term;
+
+        return view('categories.index', compact('categories', 'title'));
+    }
+
+    public function getByCategory (Category $category)
+    {
+        $books = $category->books()->paginate(12);
+        $title = " عرض الكتب بتصنيف " . " : " . $category->name;
+
+        return view('gallery', compact('books', 'title'));
+    }
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Cateogry  $cateogry
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Cateogry $cateogry)
+    public function show(Category $cateogry)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Cateogry  $cateogry
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Cateogry $cateogry)
+
+    public function edit(Category $cateogry)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Cateogry  $cateogry
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Cateogry $cateogry)
+    public function update(Request $request, Category $cateogry)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Cateogry  $cateogry
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Cateogry $cateogry)
+    public function destroy(Category $cateogry)
     {
         //
     }
