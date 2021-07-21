@@ -32,9 +32,7 @@
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item {{ request()->is('admin/categories*') ? 'active' : '' }}">
-        {{-- <a class="nav-link text-right" href="{{ route('categories.index') }}"> --}}
-        <a class="nav-link text-right" href="#">
-
+        <a class="nav-link text-right" href="{{ route('categories.index') }}">
         <i class="fas fa-folder"></i>
           <span>التصنيفات</span>
         </a>
@@ -51,8 +49,7 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item {{ request()->is('admin/publishers*') ? 'active' : '' }}">
-        <a class="nav-link text-right" href="#">
-        {{-- <a class="nav-link text-right" href="{{ route('publishers.index') }}"> --}}
+        <a class="nav-link text-right" href="{{ route('publishers.index') }}">
         <i class="fas fa-table"></i>
           <span>الناشرون</span></a>
       </li>
