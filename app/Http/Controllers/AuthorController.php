@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class AuthorController extends Controller
 {
-    public function index()
+    public function list()
     {
         $authors = Author::all()->sortBy('name');
         $title = "المؤلفون";
@@ -31,34 +31,60 @@ class AuthorController extends Controller
         return view('gallery', compact('books', 'title'));
     }
 
-    public function create()
+    public function index()
     {
-        //
+        $authors = Author::all();
+
+        return view('admin.authors.index', compact('authors'));
     }
 
+    public function create()
+    {
+        return view('admin.authors.create');
+    }
 
     public function store(Request $request)
     {
-        //
+        $data = request()->validate([
+            'name' => 'required',
+            'description' => 'sometimes',            
+        ]);
+
+        Author::create($data);
+
+        session()->flash('flash_message', 'تمت  إضافة المؤلف بنجاح');
+        return redirect(route('authors.index'));
     }
 
     public function show(Author $author)
     {
-        //
+        return view('admin.authors.show', compact('author'));
     }
 
     public function edit(Author $author)
     {
-        //
+        return view('admin.authors.edit', compact('author'));
     }
+
 
     public function update(Request $request, Author $author)
     {
-        //
+        $data = request()->validate([
+            'name' => 'required',
+            'description' => 'sometimes',            
+        ]);
+
+        $author->update($data);
+
+        session()->flash('flash_message', 'تمت  تعديل بيانات المؤلف بنجاح');
+        return redirect(route('authors.index'));
     }
 
     public function destroy(Author $author)
     {
-        //
+        $author->delete();
+
+        session()->flash('flash_message', 'تمت  حذف بيانات المؤلف بنجاح');
+        return redirect(route('authors.index'));
     }
 }

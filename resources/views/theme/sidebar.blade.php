@@ -40,8 +40,7 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item {{ request()->is('admin/authors*') ? 'active' : '' }}">
-        {{-- <a class="nav-link text-right" href="{{ route('authors.index') }}"> --}}
-        <a class="nav-link text-right" href="#">
+        <a class="nav-link text-right" href="{{ route('authors.index') }}">
         <i class="fas fa-pen-fancy"></i>
           <span>المؤلفون</span>
         </a>

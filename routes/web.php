@@ -28,7 +28,7 @@ Route::get('/publishers/{publisher}', [PublisherController::class, 'getByPublish
 Route::get('/publishers', [PublisherController::class, 'list'])->name('gallery.publishers.index');
 
 Route::get('/authors/search', [AuthorController::class, 'search'])->name('gallery.authors.search');
-Route::get('/authors', [AuthorController::class, 'index'])->name('gallery.authors.index');
+Route::get('/authors', [AuthorController::class, 'list'])->name('gallery.authors.index');
 Route::get('/authors/{author}', [AuthorController::class, 'getByAuthor'])->name('gallery.authors.show');
 
 Route::get('/books/{book}', [BookController::class, 'details'])->name('book.details');
@@ -38,7 +38,4 @@ Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 Route::resource('/admin/books', BookController::class);
 Route::resource('/admin/categories', CategoryController::class);
 Route::resource('/admin/publishers', PublisherController::class);
-
-
-
-
+Route::resource('/admin/authors', AuthorController::class);
