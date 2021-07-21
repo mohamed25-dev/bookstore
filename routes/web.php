@@ -22,3 +22,4 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', [GalleryController::class, 'index'])->name('gallery.index');
+Route::get('/search', [GalleryController::class, 'search'])->name('search');
