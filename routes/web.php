@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\GalleryController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,5 +22,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::get('/', [GalleryController::class, 'index'])->name('gallery.index');
 Route::get('/search', [GalleryController::class, 'search'])->name('search');
+Route::get('/categories/{category}', [GalleryController::class, 'getByCategory'])->name('gallery.categories.show');
+Route::get('/authors/{author}', [GalleryController::class, 'getByAuthor'])->name('gallery.authors.show');
+
+Route::get('/books/{book}', [BookController::class, 'details'])->name('book.details');
+
+
+

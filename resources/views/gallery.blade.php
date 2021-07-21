@@ -23,8 +23,7 @@
                                     @if ($book->number_of_copies > 0)
                                         <div class="col-lg-3 col-md-4 col-6" style="margin-bottom:10px">
                                             <div class="d-block mb-2 h-100 border rounded" style="padding:10px">
-                                                {{-- <a href="{{ route('book.details', $book->id) }}" style="color:#555555"> --}}
-                                                <a href="#" style="color:#555555">
+                                                <a href="{{ route('book.details', $book->id) }}" style="color:#555555">
                                                     <img class="img-fluid img-thumbnail"
                                                         src="{{ asset('storage/' . $book->cover_image) }}" alt="">
                                                     <b>
@@ -51,16 +50,14 @@
                                                     </div>
                                                 </span>
                                                 @if ($book->category != null)
-                                                    {{-- <br><a style="color:#525252" href="{{ route('gallery.categories.show', $book->category) }}">{{ $book->category->name }}</a> --}}
-                                                    <br><a style="color:#525252" href="#">{{ $book->category->name }}</a>
+                                                    <br><a style="color:#525252" href="{{ route('gallery.categories.show', $book->category) }}">{{ $book->category->name }}</a>
                                                 @endif
 
                                                 @if ($book->authors->isNotEmpty())
                                                     <br><b>تأليف: </b>
                                                     @foreach ($book->authors as $author)
                                                         {{ $loop->first ? '' : 'و' }}
-                                                        {{-- <a style="color:#525252" href="{{ route('gallery.authors.show', $author) }}">{{ $author->name }} </a> --}}
-                                                        <a style="color:#525252" href="#">{{ $author->name }} </a>
+                                                        <a style="color:#525252" href="{{ route('gallery.authors.show', $author) }}">{{ $author->name }} </a>
                                                     @endforeach
                                                 @endif
 
