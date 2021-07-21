@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
@@ -31,6 +32,11 @@ Route::get('/authors', [AuthorController::class, 'index'])->name('gallery.author
 Route::get('/authors/{author}', [AuthorController::class, 'getByAuthor'])->name('gallery.authors.show');
 
 Route::get('/books/{book}', [BookController::class, 'details'])->name('book.details');
+
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+
+Route::resource('/admin/books', BookController::class);
+Route::resource('/admin/categories', CategoryController::class);
 
 
 

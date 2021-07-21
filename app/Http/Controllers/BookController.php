@@ -2,29 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Book;
+use App\Models\Category;
+use App\Models\Publisher;
 use Illuminate\Http\Request;
+use App\Traits\ImageUploadTrait;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class BookController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    use ImageUploadTrait;
+
     public function index()
     {
-        //
+        $books = Book::all();
+        return view('admin.books.index', compact('books'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $authors = Author::all();
+        $publishers = Publisher::all();
+        $categories = Category::all();
+
+        return view('admin.books.create', compact('authors', 'publishers', 'categories'));
     }
 
     /**
@@ -35,7 +38,28 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = request()->validate([
+            'title' => 'required',
+            'isbn' => ['required', 'alpha_num', 'unique:books'],
+            'cover_image' => ['image', 'required'],
+            'category_id' => 'nullable',
+            'authors' => 'nullable',
+            'publisher_id' => 'nullable',
+            'description' => 'nullable',
+            'publish_year' => 'numeric|nullable',
+            'number_of_pages' => 'numeric|required',
+            'number_of_copies' => 'numeric|required',
+            'price' => 'numeric|required',
+        ]);
+
+        $data['cover_image'] = $this->uploadImage($request->cover_image);
+
+        $book = Book::create($data);
+        $book->authors()->attach($request->authors);
+
+        session()->flash('flash_message', 'تمت إضافة الكتاب بنجاح');
+
+        return redirect(route('books.show', $book));
     }
 
     /**
@@ -46,7 +70,7 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        //
+        return view('admin.books.show', compact('book'));
     }
 
     /**
@@ -57,7 +81,11 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        $authors = Author::all();
+        $publishers = Publisher::all();
+        $categories = Category::all();
+
+        return view('admin.books.edit', compact('authors', 'publishers', 'categories', 'book'));
     }
 
     /**
@@ -69,7 +97,32 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        $data = request()->validate([
+            'title' => 'required',
+            'isbn' => ['required', 'alpha_num', Rule::unique('books')->ignore($book->id)],
+            'category_id' => 'nullable',
+            'authors' => 'nullable',
+            'publisher_id' => 'nullable',
+            'description' => 'nullable',
+            'publish_year' => 'numeric|nullable',
+            'number_of_pages' => 'numeric|required',
+            'number_of_copies' => 'numeric|required',
+            'price' => 'numeric|required',
+        ]);
+
+        if (request()->hasFile('cover_image')) 
+        {
+            Storage::disk('public')->delete($book->cover_image);
+            $data['cover_image'] = $this->uploadImage($request->cover_image);
+        }
+
+
+        $book->update($data);
+        $book->authors()->sync($request->authors);
+
+        session()->flash('flash_message', 'تمت تعديل بيانات الكتاب بنجاح');
+
+        return redirect(route('books.show', $book));
     }
 
     /**
@@ -80,7 +133,11 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        Storage::disk('public')->delete($book->cover_image);
+        $book->delete();
+        
+        session()->flash('flash_message', 'تمت حذف الكتاب بنجاح');
+        return redirect(route('books.index'));
     }
 
     public function details(Book $book)

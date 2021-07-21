@@ -32,7 +32,9 @@
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item {{ request()->is('admin/categories*') ? 'active' : '' }}">
-        <a class="nav-link text-right" href="{{ route('categories.index') }}">
+        {{-- <a class="nav-link text-right" href="{{ route('categories.index') }}"> --}}
+        <a class="nav-link text-right" href="#">
+
         <i class="fas fa-folder"></i>
           <span>التصنيفات</span>
         </a>
@@ -40,7 +42,8 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item {{ request()->is('admin/authors*') ? 'active' : '' }}">
-        <a class="nav-link text-right" href="{{ route('authors.index') }}">
+        {{-- <a class="nav-link text-right" href="{{ route('authors.index') }}"> --}}
+        <a class="nav-link text-right" href="#">
         <i class="fas fa-pen-fancy"></i>
           <span>المؤلفون</span>
         </a>
@@ -48,14 +51,17 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item {{ request()->is('admin/publishers*') ? 'active' : '' }}">
-        <a class="nav-link text-right" href="{{ route('publishers.index') }}">
+        <a class="nav-link text-right" href="#">
+        {{-- <a class="nav-link text-right" href="{{ route('publishers.index') }}"> --}}
         <i class="fas fa-table"></i>
           <span>الناشرون</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item {{ request()->is('admin/users*') ? 'active' : '' }}">
-        <a class="nav-link text-right" href="{{ route('users.index') }}">
+        {{-- <a class="nav-link text-right" href="{{ route('users.index') }}"> --}}
+        <a class="nav-link text-right" href="#">
+
         <i class="fas fa-users"></i>
           <span>المستخدمون</span></a>
       </li>
