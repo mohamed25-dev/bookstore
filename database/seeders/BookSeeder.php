@@ -1,8 +1,9 @@
 <?php
 
+namespace Database\Seeders;
 use App\Models\Author;
 use App\Models\Book;
-use App\Models\Cateogry;
+use App\Models\Category;
 use App\Models\Publisher;
 use Illuminate\Database\Seeder;
 
@@ -16,7 +17,7 @@ class BookSeeder extends Seeder
     public function run()
     {
         $book1 = Book::create([
-            'category_id' => Cateogry::where('name', 'ريادة الأعمال')->first()->id,
+            'category_id' => Category::where('name', 'ريادة الأعمال')->first()->id,
             'publisher_id' => Publisher::where('name', 'أكاديمية حسوب')->first()->id,
             'title' => 'التوظيف عن بعد',
             'description' => 'في السنوات الأخيرة انتشر على الصعيد العالمي نظام العمل عن بُعد، حيث تلجأ العديد من الشركات والمؤسسات – وكذلك الأفراد – إلى الاستعانة بأفراد يعملون عن بُعد من المنزل أو أي مكان في العالم عبر الإنترنت.
@@ -33,7 +34,7 @@ class BookSeeder extends Seeder
         $book1->authors()->attach(Author::where('name', 'فاطمة حيشية')->first());
 
         $book2 = Book::create([
-            'category_id' => Cateogry::where('name', 'التصميم')->first()->id,
+            'category_id' => Category::where('name', 'التصميم')->first()->id,
             'publisher_id' => Publisher::where('name', 'أكاديمية حسوب')->first()->id,
             'title' => 'مدخل إلى تجربة المستخدم',
             'description' => 'يضع هذا الكتاب المُوجز القارئ على أعتاب عالم تصميم تجربة المُستخدمين UX، وهو علم له قواعده وأصوله وأدواته، ويهدف إلى تعريف القارئ المُبتدئ بأساس هذا العلم وكيف يُطبّق على المُنتجات الرّقمية من مواقع ويب خدميّة وتطبيقات على الأجهزة الذّكية وصولًا إلى التّصميم الأمثل الّذي يُوفِّق بين هدف المُستخدم أوّلًا وهدف الخدمة التّجاريّ، الأمر الّذي يعني منتجًا ناجحًا. ',
@@ -46,7 +47,7 @@ class BookSeeder extends Seeder
         $book2->authors()->attach(Author::where('name', 'محمد عرابي')->first());
         
         $book3 = Book::create([
-            'category_id' => Cateogry::where('name', 'العمل الحر')->first()->id,
+            'category_id' => Category::where('name', 'العمل الحر')->first()->id,
             'publisher_id' => Publisher::where('name', 'أكاديمية حسوب')->first()->id,
             'title' => 'دليلك المختصر لبيع المنتجات الرقمية',
             'description' => 'هل لديك وظيفة ولكن طموحك يمنعك من الاعتماد على الوظيفة فقط وأردت أن تبدأ عملك الحر لتحقق المزيد من الدخل والاستقلالية، فأنا ادعوك لقراءة هذا الدليل المختصر بتمعن لتتعرف على المنتجات الرقمية وكيف يمكنك البدء ببيعها، والمفاجأة السارة أنه يمكنك أن تبدأ بالعمل من دون رأس مال في كثير من الأحيان، فكل ما تحتاج إليه لتتمكن من البدء جهاز كمبيوتر وخط اتصال بالإنترنت بالإضافة إلى العمل الجاد والرغبة بالنجاح.
@@ -61,7 +62,7 @@ class BookSeeder extends Seeder
         $book3->authors()->attach(Author::where('name', 'محمد الزاير')->first());
         
         $book4 = Book::create([
-            'category_id' => Cateogry::where('name', 'العمل الحر')->first()->id,
+            'category_id' => Category::where('name', 'العمل الحر')->first()->id,
             'publisher_id' => Publisher::where('name', 'أكاديمية حسوب')->first()->id,
             'title' => 'دليلك المختصر لبدء العمل عبر الإنترنت',
             'description' => '
@@ -85,7 +86,7 @@ class BookSeeder extends Seeder
         $book4->authors()->attach(Author::where('name', 'عمر النواوي')->first());
         
         $book5 = Book::create([
-            'category_id' => Cateogry::where('name', 'التسويق والمبيعات')->first()->id,
+            'category_id' => Category::where('name', 'التسويق والمبيعات')->first()->id,
             'publisher_id' => Publisher::where('name', 'أكاديمية حسوب')->first()->id,
             'title' => 'الدليل المختصر لصفحات الهبوط',
             'description' => '
@@ -104,7 +105,7 @@ class BookSeeder extends Seeder
         $book5->authors()->attach(Author::where('name', 'ماجد عطوي')->first());
         
         $book6 = Book::create([
-            'category_id' => Cateogry::where('name', 'التسويق والمبيعات')->first()->id,
+            'category_id' => Category::where('name', 'التسويق والمبيعات')->first()->id,
             'publisher_id' => Publisher::where('name', 'أكاديمية حسوب')->first()->id,
             'title' => 'دليلك المختصر للعمل كمسوق بالعمولة',
             'description' => 'مرّت علي حتى كتابة هذه السّطور (1/2015) 3 سنوات تماما في العمل المُستقل من البيت، جرّبت خلال هذه الفترة العديد من الأفكار والمشاريع التي أخفق كثيرٌ منها ونجح بعضها نجاحًا نسبيا، فيما لا أزال رغم تحديّات العمل من البيت  أشعر بمُتعة الاستقلالية واتخاذ القرارات والتألق أكثر في عالم الأعمال أون لاين الذي يُعلّمني الكثير كل يوم.

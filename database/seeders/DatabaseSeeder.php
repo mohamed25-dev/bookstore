@@ -2,11 +2,8 @@
 
 namespace Database\Seeders;
 
-use AuthorSeeder;
-use BookSeeder;
-use CategorySeeder;
+use Database\Seeders;
 use Illuminate\Database\Seeder;
-use PublisherSeeder;
 
 class DatabaseSeeder extends Seeder
 {

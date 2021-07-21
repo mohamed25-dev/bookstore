@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-use App\Models\Cateogry;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
@@ -13,10 +13,10 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        Cateogry::create(['name' => 'ريادة الأعمال']);
-        Cateogry::create(['name' => 'العمل الحر']);
-        Cateogry::create(['name' => 'التسويق والمبيعات']);
-        Cateogry::create(['name' => 'التصميم']);
-        Cateogry::create(['name' => 'البرمجة']);
+        Category::create(['name' => 'ريادة الأعمال']);
+        Category::create(['name' => 'العمل الحر']);
+        Category::create(['name' => 'التسويق والمبيعات']);
+        Category::create(['name' => 'التصميم']);
+        Category::create(['name' => 'البرمجة']);
     }
 }
