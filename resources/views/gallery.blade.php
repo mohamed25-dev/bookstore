@@ -65,7 +65,8 @@
                                                 <b>السعر: </b>{{ $book->price }} $
 
                                                 @auth
-                                                    <form method="POST" action="{{ route('cart.add') }}">
+                                                <form method="POST" action="#">
+                                                    {{-- <form method="POST" action="{{ route('cart.add') }}"> --}}
                                                         @csrf
                                                         <input name="id" type="hidden" value="{{ $book->id }}">
                                                         <input class="form-control" name="quantity" type="number" value="1"

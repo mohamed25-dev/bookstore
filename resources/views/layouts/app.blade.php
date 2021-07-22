@@ -8,19 +8,91 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>مكتبتي </title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    <!-- ICONS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/597cb1f685.js" crossorigin="anonymous"></script>
+    <style>
+        .score {
+            display: block;
+            font-size: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .score-wrap {
+            display: inline-block;
+            position: relative;
+            height: 19px;
+        }
+
+        .score .stars-active {
+            color: #FFCA00;
+            position: relative;
+            z-index: 10;
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .score .stars-inactive {
+            color: lightgrey;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .rating {
+            overflow: hidden;
+            display: inline-block;
+            position: relative;
+            font-size: 20px;
+        }
+
+        .rating-star {
+            padding: 0 5px;
+            margin: 0;
+            cursor: pointer;
+            display: block;
+            float: left;
+        }
+
+        .rating-star:after {
+            position: relative;
+            font-family: "Font Awesome 5 Free";
+            content: '\f005';
+            color: lightgrey;
+        }
+
+        .rating-star.checked~.rating-star:after,
+        .rating-star.checked:after {
+            content: '\f005';
+            color: #FFCA00;
+        }
+
+        .rating:hover .rating-star:after {
+            content: '\f005';
+            color: lightgrey;
+        }
+
+        .rating-star:hover~.rating-star:after,
+        .rating .rating-star:hover:after {
+            content: '\f005';
+            color: #FFCA00;
+        }
+
+    </style>
 </head>
 
 <body dir="rtl" style="text-align: right">
@@ -28,7 +100,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    مكتبة حسوب
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -41,11 +113,11 @@
                     <ul class="navbar-nav mr-auto">
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('cart.view') }}">
-                                    @if (Auth::user()->booksInCart()->count() > 0)
-                                        <span
-                                            class="badge badge-secondary">{{ Auth::user()->booksInCart()->count() }}</span>
-                                    @endif
+                                <a class="nav-link" href="#">
+                                    {{-- <a class="nav-link" href="{{ route('cart.view') }}"> --}}
+                                    {{-- @if (Auth::user()->booksInCart()->count() > 0)
+                                        <span class="badge badge-secondary">{{ Auth::user()->booksInCart()->count() }}</span>
+                                    @endif --}}
                                     العربة
                                     <i class="fas fa-shopping-cart"></i>
                                 </a>
@@ -74,30 +146,33 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav mr-auto">
                         <!-- Authentication Links -->
                         @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('دخول') }}</a>
-                                </li>
-                            @endif
-
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('تسجيل الدخول') }}</a>
+                            </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('تسجيل') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('إنشاء حساب') }}</a>
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown justify-content-left">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-right text-right mt-2"
+                                    aria-labelledby="navbarDropdown">
+                                    @can('update-books')
+                                        <a href="{{ route('admin.index') }}" class="dropdown-item text-right">لوحة
+                                            الإدارة</a>
+                                    @endcan
+                                    
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
+                                            document.getElementById('logout-form').submit();">
                                         {{ __('خروج') }}
                                     </a>
 
@@ -116,6 +191,8 @@
             @yield('content')
         </main>
     </div>
+
+    @yield('script')
 </body>
 
 </html>

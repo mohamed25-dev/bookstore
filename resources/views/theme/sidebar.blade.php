@@ -55,9 +55,7 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item {{ request()->is('admin/users*') ? 'active' : '' }}">
-        {{-- <a class="nav-link text-right" href="{{ route('users.index') }}"> --}}
-        <a class="nav-link text-right" href="#">
-
+        <a class="nav-link text-right" href="{{ route('users.index') }}">
         <i class="fas fa-users"></i>
           <span>المستخدمون</span></a>
       </li>
