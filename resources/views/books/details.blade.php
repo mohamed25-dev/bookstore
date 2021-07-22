@@ -19,13 +19,13 @@
                             <td>
                                 <span class="score">
                                     <div class="score-wrap">
-                                        {{-- <span class="stars-active" style="width: {{ $book->rate()*20 }}%">
+                                        <span class="stars-active" style="width: {{ $book->rate()*20 }}%">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
-                                        </span> --}}
+                                        </span>
                                         
                                         <span class="stars-inactive">
                                             <i class="fa fa-star"></i>
@@ -36,7 +36,7 @@
                                         </span>
                                     </div>
                                 </span>
-                                {{-- <span>عدد المقيّمين {{ $book->ratings()->count() }} مستخدم</span> --}}
+                                <span>عدد المقيّمين {{ $book->ratings()->count() }} مستخدم</span>
                             </td>
                         </tr>
 
@@ -98,6 +98,32 @@
                             <td>{{ $book->price }} $</td>
                         </tr>
                     </table>
+                    @auth
+                        <h4>قيّم هذا الكتاب<h4>
+                        {{-- @if ($bookfind) --}}
+                            @if(auth()->user()->rated($book))
+                                <div class="rating">
+                                    <span class="rating-star {{ auth()->user()->bookRating($book)->value == 5 ? 'checked' : '' }}" data-value="5"></span>
+                                    <span class="rating-star {{ auth()->user()->bookRating($book)->value == 4 ? 'checked' : '' }}" data-value="4"></span>
+                                    <span class="rating-star {{ auth()->user()->bookRating($book)->value == 3 ? 'checked' : '' }}" data-value="3"></span>
+                                    <span class="rating-star {{ auth()->user()->bookRating($book)->value == 2 ? 'checked' : '' }}" data-value="2"></span>
+                                    <span class="rating-star {{ auth()->user()->bookRating($book)->value == 1 ? 'checked' : '' }}" data-value="1"></span>
+                                </div>
+                            @else
+                                <div class="rating">
+                                    <span class="rating-star" data-value="5"></span>
+                                    <span class="rating-star" data-value="4"></span>
+                                    <span class="rating-star" data-value="3"></span>
+                                    <span class="rating-star" data-value="2"></span>
+                                    <span class="rating-star" data-value="1"></span>
+                                </div>
+                            @endif
+                        {{-- @else --}}
+                        <div class="alert alert-danger" role="alert">
+                            يجب شراء الكتاب لتستطيع تقيمه
+                        </div>
+                        {{-- @endif --}}
+                    @endauth
                 </div>
             </div>
         </div>

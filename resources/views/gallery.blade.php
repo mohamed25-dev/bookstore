@@ -30,16 +30,17 @@
                                                         <p style="height:25px">{{ $book->title }}</p>
                                                     </b>
                                                 </a>
+                                                
                                                 <span class="score">
                                                     <div class="score-wrap">
-                                                        {{-- <span class="stars-active" style="width: {{ $book->rate()*20 }}%">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </span> --}}
-
+                                                        <span class="stars-active" style="width: {{ $book->rate()*20 }}%">
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                        </span>
+                                                        
                                                         <span class="stars-inactive">
                                                             <i class="fa fa-star"></i>
                                                             <i class="fa fa-star"></i>
@@ -49,15 +50,19 @@
                                                         </span>
                                                     </div>
                                                 </span>
+
                                                 @if ($book->category != null)
-                                                    <br><a style="color:#525252" href="{{ route('gallery.categories.show', $book->category) }}">{{ $book->category->name }}</a>
+                                                    <br><a style="color:#525252"
+                                                        href="{{ route('gallery.categories.show', $book->category) }}">{{ $book->category->name }}</a>
                                                 @endif
 
                                                 @if ($book->authors->isNotEmpty())
                                                     <br><b>تأليف: </b>
                                                     @foreach ($book->authors as $author)
                                                         {{ $loop->first ? '' : 'و' }}
-                                                        <a style="color:#525252" href="{{ route('gallery.authors.show', $author) }}">{{ $author->name }} </a>
+                                                        <a style="color:#525252"
+                                                            href="{{ route('gallery.authors.show', $author) }}">{{ $author->name }}
+                                                        </a>
                                                     @endforeach
                                                 @endif
 
@@ -65,8 +70,8 @@
                                                 <b>السعر: </b>{{ $book->price }} $
 
                                                 @auth
-                                                <form method="POST" action="#">
-                                                    {{-- <form method="POST" action="{{ route('cart.add') }}"> --}}
+                                                    <form method="POST" action="#">
+                                                        {{-- <form method="POST" action="{{ route('cart.add') }}"> --}}
                                                         @csrf
                                                         <input name="id" type="hidden" value="{{ $book->id }}">
                                                         <input class="form-control" name="quantity" type="number" value="1"

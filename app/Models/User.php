@@ -41,13 +41,30 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function isAdmin ()
+    public function isAdmin()
     {
         return $this->administration_level > 0;
     }
 
-    public function isSuperAdmin ()
+    public function isSuperAdmin()
     {
         return $this->administration_level > 0;
+    }
+
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class);
+    }
+
+    public function rated(Book $book)
+    {
+        return $this->ratings->where('book_id', $book->id)->isNotEmpty();
+    }
+
+    public function bookRating(Book $book)
+    {
+        return $this->rated($book)
+            ? $this->ratings->where('book_id', $book->id)->first()
+            : NULL;
     }
 }

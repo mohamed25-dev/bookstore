@@ -33,7 +33,7 @@ Route::get('/authors', [AuthorController::class, 'list'])->name('gallery.authors
 Route::get('/authors/{author}', [AuthorController::class, 'getByAuthor'])->name('gallery.authors.show');
 
 Route::get('/books/{book}', [BookController::class, 'details'])->name('book.details');
-
+Route::post('/books/{book}/rate', [BookController::class, 'rate'])->name('book.rate');
 
 Route::prefix('/admin')->middleware('can:update-books')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
