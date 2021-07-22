@@ -113,11 +113,11 @@
                     <ul class="navbar-nav mr-auto">
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    {{-- <a class="nav-link" href="{{ route('cart.view') }}"> --}}
-                                    {{-- @if (Auth::user()->booksInCart()->count() > 0)
-                                        <span class="badge badge-secondary">{{ Auth::user()->booksInCart()->count() }}</span>
-                                    @endif --}}
+                                <a class="nav-link" href="{{ route('cart.view') }}">
+                                    @if (Auth::user()->booksInCart()->count() > 0)
+                                        <span
+                                            class="badge badge-secondary">{{ Auth::user()->booksInCart()->count() }}</span>
+                                    @endif
                                     العربة
                                     <i class="fas fa-shopping-cart"></i>
                                 </a>
@@ -170,9 +170,9 @@
                                         <a href="{{ route('admin.index') }}" class="dropdown-item text-right">لوحة
                                             الإدارة</a>
                                     @endcan
-                                    
+
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
+                                                document.getElementById('logout-form').submit();">
                                         {{ __('خروج') }}
                                     </a>
 

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\PublisherController;
@@ -34,6 +35,12 @@ Route::get('/authors/{author}', [AuthorController::class, 'getByAuthor'])->name(
 
 Route::get('/books/{book}', [BookController::class, 'details'])->name('book.details');
 Route::post('/books/{book}/rate', [BookController::class, 'rate'])->name('book.rate');
+
+Route::post('/cart', [CartController::class, 'addToCart'])->name('cart.add')->middleware('auth');
+Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view')->middleware('auth');
+Route::post('/cart/removeOne/{book}', [CartController::class, 'removeOne'])->name('cart.removeOne')->middleware('auth');
+Route::post('/cart/removeAll/{book}', [CartController::class, 'removeAll'])->name('cart.removeAll')->middleware('auth');
+
 
 Route::prefix('/admin')->middleware('can:update-books')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');

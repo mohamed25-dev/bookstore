@@ -67,4 +67,11 @@ class User extends Authenticatable
             ? $this->ratings->where('book_id', $book->id)->first()
             : NULL;
     }
+
+    public function booksInCart ()
+    {
+        return $this->belongsToMany(Book::class)
+            ->withPivot(['number_of_copies', 'bought'])
+            ->wherePivot('bought', false);
+    }
 }

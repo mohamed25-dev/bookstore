@@ -51,9 +51,13 @@
                                                     </div>
                                                 </span>
 
+                                                <b>التصنيف: </b>
                                                 @if ($book->category != null)
-                                                    <br><a style="color:#525252"
+                                                    <a style="color:#525252"
                                                         href="{{ route('gallery.categories.show', $book->category) }}">{{ $book->category->name }}</a>
+                                                 
+                                                @else
+                                                    <b>غير مصنف</b>
                                                 @endif
 
                                                 @if ($book->authors->isNotEmpty())
@@ -70,8 +74,7 @@
                                                 <b>السعر: </b>{{ $book->price }} $
 
                                                 @auth
-                                                    <form method="POST" action="#">
-                                                        {{-- <form method="POST" action="{{ route('cart.add') }}"> --}}
+                                                    <form method="POST" action="{{ route('cart.add') }}">
                                                         @csrf
                                                         <input name="id" type="hidden" value="{{ $book->id }}">
                                                         <input class="form-control" name="quantity" type="number" value="1"
