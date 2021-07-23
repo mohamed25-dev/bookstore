@@ -12,7 +12,9 @@
         "intervention/image": "^2.6",
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^3.3"
+        "laravel/ui": "^3.3",
+        "paypal/paypal-checkout-sdk": "1.0.1",
+        "paypal/rest-api-sdk-php": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

@@ -172,7 +172,7 @@
                                     @endcan
 
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
+                                                    document.getElementById('logout-form').submit();">
                                         {{ __('خروج') }}
                                     </a>
 
@@ -188,6 +188,13 @@
         </nav>
 
         <main class="py-4">
+            <div class="container">
+                @if (Session::has('flash_message'))
+                    <div class="p-3 mb-2 bg-success text-white rounded text-center">
+                        {{ session('flash_message') }}
+                    </div>
+                @endif
+            </div>
             @yield('content')
         </main>
     </div>

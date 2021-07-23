@@ -7,6 +7,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\PublisherController;
+use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,6 +41,8 @@ Route::post('/cart', [CartController::class, 'addToCart'])->name('cart.add')->mi
 Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view')->middleware('auth');
 Route::post('/cart/removeOne/{book}', [CartController::class, 'removeOne'])->name('cart.removeOne')->middleware('auth');
 Route::post('/cart/removeAll/{book}', [CartController::class, 'removeAll'])->name('cart.removeAll')->middleware('auth');
+
+// Route::post('/pay', [PurchaseController::class, 'executePayment'])->name('cart.pay')->middleware('auth');
 
 
 Route::prefix('/admin')->middleware('can:update-books')->group(function () {

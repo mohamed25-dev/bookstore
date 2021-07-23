@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\PayPalController;
+use App\Http\Controllers\PurchaseController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +20,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('create-payment/{id}', [PayPalController::class, 'createPayment']);
+Route::post('execute-payment/{id}/capture', [PayPalController::class, 'executePayment']);
