@@ -13,6 +13,9 @@ class PublisherSeeder extends Seeder
      */
     public function run()
     {
-        Publisher::create(['name' => 'أكاديمية حسوب']);
+        Publisher::create(['name' => 'الناشرون']);
+        Publisher::create(['name' => 'دار النشر']);
+        Publisher::create(['name' => 'دار الفكر']);
+
     }
 }

@@ -13,10 +13,10 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        Category::create(['name' => 'ريادة الأعمال']);
-        Category::create(['name' => 'العمل الحر']);
-        Category::create(['name' => 'التسويق والمبيعات']);
-        Category::create(['name' => 'التصميم']);
-        Category::create(['name' => 'البرمجة']);
+        Category::create(['name' => 'اللغة العربية']);
+        Category::create(['name' => 'السيرة الذاتية']);
+        Category::create(['name' => 'التاريخ']);
+        Category::create(['name' => 'تطوير الذات']);
+        Category::create(['name' => 'الرواية']);
     }
 }

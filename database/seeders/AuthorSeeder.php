@@ -13,11 +13,11 @@ class AuthorSeeder extends Seeder
      */
     public function run()
     {
-        Author::create(['name' => 'فاطمة حيشية']);
-        Author::create(['name' => 'محمد عرابي']);
-        Author::create(['name' => 'محمد الزاير']);
-        Author::create(['name' => 'عمر النواوي']);
-        Author::create(['name' => 'ماجد عطوي']);
-        Author::create(['name' => 'رياض سامر']);
+        Author::create(['name' => 'الجاحظ']);
+        Author::create(['name' => 'ابن خلدون']);
+        Author::create(['name' => 'أغاثا كريستي']);
+        Author::create(['name' => 'علي الطنطاوي ']);
+        Author::create(['name' => 'كارل نيو بورت']);
+        Author::create(['name' => 'سيبويه']);
     }
 }
