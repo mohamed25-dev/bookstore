@@ -15,8 +15,8 @@ class PayPalController extends Controller
 
     public function createPayment($id)
     {
-        $clientId = "AexXm3q3WdlRb-SDY7GfS2i-ntwQKE5DivMW_TfpOGfL--p8nu8U5OecMsf6yIIZL70fWgKUFF_1zDd6";
-        $clientSecret = "EF0roQrlzLMzgu2AUVhFEw89ulZzNUg12FcoU1EDDYfMWYs79m6NB__n36c9FokPZjg3hCQXphYoI2kv";
+        $clientId = env('PAYPAL_CLIENT_ID', NULL);
+        $clientSecret = env('PAYPAL_SECRET', NULL);
         $baseUrl = url('/');
 
         $items = [];
