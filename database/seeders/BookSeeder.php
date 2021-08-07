@@ -19,7 +19,7 @@ class BookSeeder extends Seeder
         $book1 = Book::create([
             'category_id' => Category::where('name', 'اللغة العربية')->first()->id,
             'publisher_id' => Publisher::where('name', 'الناشرون')->first()->id,
-            'title' => 'الجاحظ',
+            'title' => 'الحيوان',
             'description' => 'هذا النص يمكن أن يتم تركيبه على أي تصميم دون مشكلة فلن يبدو وكأنه نص منسوخ، غير منظم، غير منسق، أو حتى غير مفهوم. لأنه مازال نصاً بديلاً ومؤقتاً.
 
             هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.
@@ -28,7 +28,7 @@ class BookSeeder extends Seeder
             'number_of_pages' => '544',
             'price' => '17',
             'isbn'=>'100000000000',
-            'cover_image' => 'images/covers/1.png',
+            'cover_image' => 'images/covers/1.jpg',
         ]);
         $book1->authors()->attach(Author::where('name', 'الجاحظ')->first());
 
@@ -44,7 +44,7 @@ class BookSeeder extends Seeder
             'number_of_pages' => '452',
             'price' => '22',
             'isbn'=>'100000000001',
-            'cover_image' => 'images/covers/2.png',
+            'cover_image' => 'images/covers/2.jpg',
         ]);
         $book2->authors()->attach(Author::where('name', 'علي الطنطاوي')->first());
         
@@ -60,7 +60,7 @@ class BookSeeder extends Seeder
             'number_of_pages' => '288',
             'price' => '18',
             'isbn'=>'100000000002',
-            'cover_image' => 'images/covers/3.png',
+            'cover_image' => 'images/covers/3.jpg',
         ]);
         $book3->authors()->attach(Author::where('name', 'أغاثا كريستي')->first());
         
@@ -76,7 +76,7 @@ class BookSeeder extends Seeder
             'number_of_pages' => '288',
             'price' => '24',
             'isbn'=>'100000000004',
-            'cover_image' => 'images/covers/5.png',
+            'cover_image' => 'images/covers/5.jpg',
         ]);
         $book4->authors()->attach(Author::where('name', 'كارل نيو بورت')->first());
         
@@ -92,7 +92,7 @@ class BookSeeder extends Seeder
             'number_of_pages' => '288',
             'price' => '20',
             'isbn'=>'100000000005',
-            'cover_image' => 'images/covers/6.png',
+            'cover_image' => 'images/covers/6.jpg',
         ]);
         $book5->authors()->attach(Author::where('name', 'ابن خلدون')->first());
 
@@ -108,7 +108,7 @@ class BookSeeder extends Seeder
             'number_of_pages' => '288',
             'price' => '20',
             'isbn'=>'100000000005',
-            'cover_image' => 'images/covers/6.png',
+            'cover_image' => 'images/covers/4.jpg',
         ]);
         $book6->authors()->attach(Author::where('name', 'سيبويه')->first());
     }
