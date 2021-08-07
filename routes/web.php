@@ -6,6 +6,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\UserController;
@@ -42,8 +43,8 @@ Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view')->mid
 Route::post('/cart/removeOne/{book}', [CartController::class, 'removeOne'])->name('cart.removeOne')->middleware('auth');
 Route::post('/cart/removeAll/{book}', [CartController::class, 'removeAll'])->name('cart.removeAll')->middleware('auth');
 
-// Route::post('/pay', [PurchaseController::class, 'executePayment'])->name('cart.pay')->middleware('auth');
-
+Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+Route::patch('/profile', [ProfileController::class, 'updateProfile'])->name('profile.update');
 
 Route::prefix('/admin')->middleware('can:update-books')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
